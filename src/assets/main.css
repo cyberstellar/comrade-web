@@ -1,0 +1,16 @@
+@import 'base.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
+.container {
+    height: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+@screen and (min-width: 1024px) {
+    .container {
+        padding: 0 42px;
+    }
+}
