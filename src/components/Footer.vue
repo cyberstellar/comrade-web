@@ -76,6 +76,7 @@
 
   a {
     color: var(--theme-color-brand-orange);
+    text-wrap: wrap;
   }
 
   .column {

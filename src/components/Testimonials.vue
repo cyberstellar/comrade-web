@@ -70,6 +70,7 @@ import StarIcon from '@/assets/icons/StarIcon.vue'
 .list {
   display: flex;
   column-gap: 24px;
+  overflow-x: auto;
 }
 
 .list-item {
@@ -78,7 +79,7 @@ import StarIcon from '@/assets/icons/StarIcon.vue'
   padding: 24px;
   border-radius: 16px;
   width: 100%;
-  max-width: 460px;
+  min-width: calc(100vw - 32px);
 
   .rating {
     display: flex;
@@ -111,6 +112,7 @@ import StarIcon from '@/assets/icons/StarIcon.vue'
   .list-item {
     padding: 40px 45px 50px 40px;
     border-radius: 32px;
+    min-width: 300px;
 
     .rating {
       margin-bottom: 32px;
