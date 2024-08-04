@@ -7,26 +7,25 @@
     <div class="container">
       <div class="text-group">
         <h1>Your Kitchen Refacing Solution</h1>
-        <p class="ts-l">Bringing New Life to Your Kitchen Cabinets: American-Made, Family-Owned Company</p>
+        <p class="txt-l">Bringing New Life to Your Kitchen Cabinets: American-Made, Family-Owned Company</p>
       </div>
       <div class="btn-group">
         <a href="/" class="button">Get Your Free Estimate</a>
         <a href="/" class="button button--outline-white">View Our Process</a>
       </div>
     </div>
-    <div class="section-img">
+    <div class="section-img img--cover">
       <img src="@/assets/images/main-bg.webp" alt="">
     </div>
-    <ul></ul>
   </section>
 </template>
 
 <style scoped>
 .intro {
   position: relative;
-  padding-top: 238px;
-  padding-bottom: 203px;
-  border-radius: 0 0 72px 72px;
+  padding-top: 93px;
+  padding-bottom: 32px;
+  border-radius: var(--bottom-corners);
   color: var(--theme-color-text-white);
 }
 
@@ -34,7 +33,7 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  row-gap: 40px;
+  row-gap: 32px;
   z-index: 1;
 }
 
@@ -52,9 +51,10 @@
 
 .btn-group {
   display: flex;
-  column-gap: 16px;
-  width: 490px;
+  flex-direction: column;
+  grid-gap: 16px;
   margin: 0 auto;
+  width: 100%;
 
   .button {
     flex: 1;
@@ -68,12 +68,21 @@
   right: 0;
   left: 0;
   filter: brightness(0.6);
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    object-fit: cover;
+@media screen and (min-width: 1440px) {
+  .intro {
+    padding-top: 238px;
+    padding-bottom: 203px;
+  }
+
+  .container {
+    row-gap: 40px;
+  }
+
+  .btn-group {
+    flex-direction: row;
+    width: 490px;
   }
 }
 </style>

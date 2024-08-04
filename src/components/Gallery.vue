@@ -10,16 +10,18 @@
         <div class="gallery__desc">
           <p>Browse our gallery to see before and after photos of our previous cabinet refacing projects. Our
             transformative work speaks for itself.</p>
-          <a href="/public" class="button button--outline-white">Browse The Gallery</a>
+          <a href="#!" class="button button--outline-white">Browse The Gallery</a>
         </div>
       </div>
       <div class="image-gallery">
         <div class="image-gallery__slides">
-          <div class="slide">
-            <img src="../assets/images/before.webp" alt="">
+          <div class="slide img--cover">
+            <span class="label">Before</span>
+            <img src="@/assets/images/before.webp" alt="">
           </div>
-          <div class="slide">
-            <img src="../assets/images/after.webp" alt="">
+          <div class="slide img--cover">
+            <span class="label">After</span>
+            <img src="@/assets/images/after.webp" alt="">
           </div>
         </div>
         <div class="image-gallery__nav">
@@ -27,15 +29,15 @@
         </div>
       </div>
       <div class="gallery__footer">
-        <a href="/public">View The Project</a>
+        <a href="#!">View The Project</a>
         <div class="gallery__controls">
           <button class="button--outline-white"></button>
           <button class="button--outline-white"></button>
         </div>
       </div>
     </div>
-    <div class="bg-img">
-      <img src="../assets/images/logo-bg.svg" alt="Gallery">
+    <div class="bg-img img--cover">
+      <img src="@/assets/images/logo-bg.svg" alt="Gallery">
     </div>
   </section>
 </template>
@@ -44,31 +46,33 @@
 .gallery {
   position: relative;
   background: #342f28;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  margin-top: 50px;
+  padding: 50px 0;
   color: var(--theme-color-text-white);
-  border-radius: 72px;
-  margin-top: 100px;
+  border-radius: var(--full-corners);
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  row-gap: 40px;
+  row-gap: 32px;
   position: relative;
   z-index: 1;
 }
 
 .gallery__header {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  width: 100%;
+  row-gap: 16px;
+  flex: 1;
 }
 
 .gallery__footer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 32px;
 
   a {
     color: #F6F3EC;
@@ -124,35 +128,22 @@
 
 .image-gallery__slides {
   display: flex;
-  column-gap: 24px;
+  flex-direction: column;
+  grid-gap: 8px;
 
   .slide {
     position: relative;
     overflow: hidden;
     border-radius: 24px;
 
-    &:before {
-      content: 'Before';
-      display: block;
+    .label {
       position: absolute;
-      top: 24px;
-      left: 24px;
-      padding: 16px 32px;
+      top: 16px;
+      left: 16px;
+      padding: 8px 24px;
       background: var(--theme-color-text-white);
       color: var(--theme-color-brand-black);
       border-radius: 100px;
-    }
-
-    &:nth-child(2) {
-      &:before {
-        content: 'After';
-      }
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
     }
   }
 }
@@ -163,11 +154,36 @@
   right: 0;
   bottom: 0;
   opacity: 0.1;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+@media screen and (min-width: 1440px) {
+  .gallery {
+    margin-top: 100px;
+    padding: 100px 0;
+  }
+
+  .container {
+    row-gap: 40px;
+  }
+
+  .gallery__header {
+    flex-direction: row;
+  }
+
+  .image-gallery__slides {
+    flex-direction: row;
+  }
+
+  .gallery__footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .slide .label {
+    top: 24px;
+    left: 24px;
+    padding: 16px 32px !important;
   }
 }
 </style>
