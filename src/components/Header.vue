@@ -6,67 +6,71 @@ import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
 <template>
   <header class="header">
     <div class="container">
-      <a href="#" class="logo">
+      <a href="#!" class="logo">
         <img src="@/assets/images/logo.svg" alt="">
       </a>
       <nav class="nav">
         <ul class="list">
-          <li class="list-item">
-            <a href="#" class="chevron">Services</a>
+          <li class="list__item">
+            <a href="#!" class="chevron">Services</a>
             <ul class="submenu">
-              <li><a href="#">Cabinet Refacing</a></li>
-              <li><a href="#">Cabinet Doors Replacement</a></li>
-              <li><a href="#">Thermofoil Cabinet Door Repair</a></li>
-              <li><a href="#">Decorative Wall Panels</a></li>
+              <li><a href="#!">Cabinet Refacing</a></li>
+              <li><a href="#!">Cabinet Doors Replacement</a></li>
+              <li><a href="#!">Thermofoil Cabinet Door Repair</a></li>
+              <li><a href="#!">Decorative Wall Panels</a></li>
             </ul>
           </li>
-          <li class="list-item"><a href="#">Commercial</a></li>
-          <li class="list-item"><a href="#">Our Process</a></li>
-          <li class="list-item"><a href="#">Gallery</a></li>
-          <li class="list-item"><a href="#">Areas we serve</a></li>
-          <li class="list-item"><a href="#">About us</a></li>
+          <li class="list__item"><a href="#!">Commercial</a></li>
+          <li class="list__item"><a href="#!">Our Process</a></li>
+          <li class="list__item"><a href="#!">Gallery</a></li>
+          <li class="list__item"><a href="#!">Areas we serve</a></li>
+          <li class="list__item"><a href="#!">About us</a></li>
         </ul>
       </nav>
-      <a href="tel:8900" class="phone">
-        <PhoneIcon />
-        <span>(800) 809-7197</span>
-      </a>
-      <a href="#" class="estimate button">Get a free estimate</a>
-      <button class="menu"></button>
+      <div class="header__actions">
+        <a href="tel:8900" class="phone">(800) 809-7197</a>
+        <a href="#!" class="estimate button">Get a free estimate</a>
+        <button class="menu"></button>
+      </div>
     </div>
   </header>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .header {
   display: flex;
   position: fixed;
-  font-size: 18px;
   height: var(--header-height);
   width: 100%;
-  background-color: var(--theme-color-header-bg);
+  font-size: 18px;
   border-radius: 0 0 8px 8px;
+  background-color: var(--theme-color-header-bg);
   z-index: 999;
+
+  &__actions {
+    display: flex;
+    column-gap: 8px;
+  }
 }
 
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  column-gap: 24px;
+  column-gap: 40px;
 }
 
 .nav {
   height: 100%;
+  width: 100%;
 
   .list {
     display: none;
     flex-direction: row;
     justify-content: space-between;
     height: 100%;
-    gap: 15px;
 
-    .list-item {
+    .list__item {
       position: relative;
 
       a {
@@ -92,7 +96,6 @@ import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
         left: calc(var(--padding) * -1);
         background-color: var(--theme-color-button-hover);
         border-radius: 0 0 24px 24px;
-        border: var(--border);
       }
     }
   }
@@ -106,6 +109,23 @@ import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
   }
 }
 
+.estimate {
+  display: none;
+}
+
+.menu, .phone {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.menu {
+  display: block;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background-image: url("@/assets/icons/menu-open.svg");
+}
+
 .phone {
   --color: var(--theme-color-brand-orange);
   display: flex;
@@ -116,36 +136,17 @@ import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
   box-shadow: inset 0 0 0 1px var(--color);
   width: 40px;
   height: 40px;
-  border-radius: 100%;
-
-  svg {
-    fill: var(--color);
-    transition: var(--transition);
-  }
-
-  &:hover {
-    background: var(--color);
-    box-shadow: none;
-    svg {
-      fill: var(--theme-color-text-white);
-    }
-  }
+  border-radius: 40px;
+  background-image: url("@/assets/icons/phone.svg");
 }
 
-.estimate {
-  display: none;
-}
-
-.menu {
-  display: block;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-}
-
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1440px) {
   .header {
     border-radius: 0 0 48px 48px;
+
+    &__actions {
+      column-gap: 24px;
+    }
   }
 
   .logo {
@@ -162,10 +163,7 @@ import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
     width: auto;
     height: auto;
     box-shadow: none;
-
-    svg {
-      display: none;
-    }
+    background-image: none;
   }
 
   .estimate {

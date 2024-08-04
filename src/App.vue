@@ -7,12 +7,14 @@ import StarIcon from '@/assets/icons/StarIcon.vue'
 import Testimonials from '@/components/Testimonials.vue'
 import ContactForm from '@/components/ContactForm.vue'
 import Footer from '@/components/Footer.vue'
+import Benefits from '@/components/Benefits.vue'
 </script>
 
 <template>
   <Header />
   <main>
     <Intro />
+    <Benefits />
     <OurServices />
     <Gallery />
     <Testimonials />
