@@ -1,15 +1,17 @@
 <script setup>
+import { ref } from 'vue'
 
-import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
+const isActive = ref(false)
+
 </script>
 
 <template>
-  <header class="header">
+  <header class="header" :class="{ 'header--active': isActive }">
     <div class="container">
       <a href="#!" class="logo">
         <img src="@/assets/images/logo.svg" alt="">
       </a>
-      <nav class="nav">
+      <nav class="nav" :class="{ 'nav--active': isActive }">
         <ul class="list">
           <li class="list__item">
             <a href="#!" class="chevron">Services</a>
@@ -30,7 +32,7 @@ import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
       <div class="header__actions">
         <a href="tel:8900" class="phone">(800) 809-7197</a>
         <a href="#!" class="estimate button">Get a free estimate</a>
-        <button class="menu"></button>
+        <button class="menu-btn" :class="{ 'menu-btn--active': isActive }" @click="isActive = !isActive" ref="menuBtn"></button>
       </div>
     </div>
   </header>
@@ -51,8 +53,11 @@ import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
     display: flex;
     column-gap: 8px;
   }
-}
 
+  &--active {
+    border-radius: 0;
+  }
+}
 .container {
   display: flex;
   justify-content: space-between;
@@ -61,14 +66,26 @@ import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
 }
 
 .nav {
+  display: block;
+  position: fixed;
   height: 100%;
   width: 100%;
+  top: var(--header-height);
+  left: 0;
+  padding: 16px;
+  background-color: var(--theme-color-header-bg);
+  transform: translateX(-100%);
+  transition: all 0.3s ease-in-out;
 
   .list {
-    display: none;
-    flex-direction: row;
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
     height: 100%;
+
+    .submenu {
+      display: none;
+    }
 
     .list__item {
       position: relative;
@@ -79,25 +96,11 @@ import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
         column-gap: 8px;
         height: 100%;
       }
-
-      &:hover {
-        .submenu {
-          display: flex;
-        }
-      }
-
-      .submenu {
-        --padding: var(--m32);
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        row-gap: 16px;
-        padding: var(--padding);
-        left: calc(var(--padding) * -1);
-        background-color: var(--theme-color-button-hover);
-        border-radius: 0 0 24px 24px;
-      }
     }
+  }
+
+  &--active {
+    transform: translateX(0);
   }
 }
 
@@ -113,17 +116,21 @@ import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
   display: none;
 }
 
-.menu, .phone {
+.menu-btn, .phone {
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.menu {
+.menu-btn {
   display: block;
   width: 40px;
   height: 40px;
   padding: 0;
   background-image: url("@/assets/icons/menu-open.svg");
+}
+
+.menu-btn--active {
+  background-image: url("@/assets/icons/menu-close.svg");
 }
 
 .phone {
@@ -153,8 +160,33 @@ import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
     height: 60px;
   }
 
-  .nav .list {
-    display: flex !important;
+  .nav {
+    position: static;
+    transform: translateX(0);
+    padding: 0;
+
+    .list {
+      flex-direction: row;
+      justify-content: space-between;
+
+      &:hover {
+        .submenu {
+          display: flex;
+        }
+      }
+
+      .submenu {
+        --padding: var(--m32);
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        row-gap: 16px;
+        padding: var(--padding);
+        left: calc(var(--padding) * -1);
+        background-color: var(--theme-color-button-hover);
+        border-radius: 0 0 24px 24px;
+      }
+    }
   }
 
   .phone {
@@ -170,7 +202,7 @@ import PhoneIcon from '@/assets/icons/PhoneIcon.vue'
     display: block;
   }
 
-  .menu {
+  .menu-btn {
     display: none;
   }
 }

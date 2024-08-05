@@ -77,23 +77,30 @@ a {
   font-weight: 600;
   text-decoration: none;
 
-  &:hover {
-    --color: var(--theme-color-brand-orange);
-    &.chevron::after {
-      rotate: -135deg;
-    }
-  }
-
   &.chevron::after {
     content: '';
     display: block;
     width: 6px;
     height: 6px;
-    rotate: 45deg;
+    rotate: 315deg;
     border: 1px solid var(--color);
     border-top: 0;
     border-left: 0;
     transition: var(--transition);
+  }
+
+  @media screen and (min-width: 1440px) {
+    &.chevron::after {
+      font-size: 18px;
+      rotate: 45deg;
+    }
+
+    &:hover {
+      --color: var(--theme-color-brand-orange);
+      &.chevron::after {
+        rotate: -135deg;
+      }
+    }
   }
 }
 
