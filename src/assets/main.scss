@@ -1,0 +1,111 @@
+@import 'base.scss';
+@import 'base.desktop.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root[data-theme="light"] {
+  --theme-color-brand-orange: #DA7816;
+  --theme-color-brand-black: #151515;
+  --theme-color-brand-gray: #CDCDCD;
+  --theme-color-status-red: #D73333;
+  --theme-color-text-white: #FFFFFF;
+  --theme-color-button-hover: #F6F3EC;
+  --theme-color-border-light: #D9D9D9;
+  --theme-color-header-bg: #FFFFFF;
+  --theme-color-brown: #45280A;
+}
+
+:root {
+  --header-height: 60px;
+  --border-radius: 40px;
+  --bottom-corners: 0 0 var(--border-radius) var(--border-radius);
+  --full-corners: var(--border-radius);
+  --border: 1px solid var(--theme-color-border-light);
+  --transition: all 0.3s ease-in-out;
+
+  --margin-1: 50px;
+  --margin-2: 40px;
+
+  --m32: 32px;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+img {
+  display: block;
+}
+
+.img--cover img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 1440px) {
+  :root {
+    --header-height: 100px;
+    --border-radius: 72px;
+    --margin-1: 100px;
+    --margin-2: 80px;
+  }
+
+  .container {
+    padding: 0 42px;
+  }
+}
+
+.chevron, .chevron--before {
+  --color: var(--theme-color-brand-black);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chevron {
+  &::after, &--before::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--color);
+    border-top: 0;
+    border-left: 0;
+  }
+
+  &::after {
+    rotate: 315deg;
+  }
+
+  &--before::before {
+    rotate: 135deg;
+  }
+
+  &--before::after {
+    content: none;
+  }
+
+  @media screen and (min-width: 1440px) {
+    &::after {
+      font-size: 18px;
+      rotate: 45deg;
+      transition: var(--transition);
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      --color: var(--theme-color-brand-orange);
+
+      &::after {
+        rotate: -135deg;
+      }
+    }
+  }
+}

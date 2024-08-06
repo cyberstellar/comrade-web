@@ -3,6 +3,10 @@ import { ref } from 'vue'
 
 const isActive = ref(false)
 
+function toggleSubmenu(e) {
+  e.target.closest('.list__item').querySelector('.submenu').classList.toggle('submenu--active')
+}
+
 </script>
 
 <template>
@@ -14,13 +18,17 @@ const isActive = ref(false)
       <nav class="nav" :class="{ 'nav--active': isActive }">
         <ul class="list">
           <li class="list__item">
+            <div class="touch-area" @click="toggleSubmenu" />
             <a href="#!" class="chevron">Services</a>
-            <ul class="submenu">
-              <li><a href="#!">Cabinet Refacing</a></li>
-              <li><a href="#!">Cabinet Doors Replacement</a></li>
-              <li><a href="#!">Thermofoil Cabinet Door Repair</a></li>
-              <li><a href="#!">Decorative Wall Panels</a></li>
-            </ul>
+            <div class="submenu">
+              <div class="back h5 chevron--before" @click="toggleSubmenu">Back</div>
+              <ul class="submenu__list">
+                <li><a href="#!">Cabinet Refacing</a></li>
+                <li><a href="#!">Cabinet Doors Replacement</a></li>
+                <li><a href="#!">Thermofoil Cabinet Door Repair</a></li>
+                <li><a href="#!">Decorative Wall Panels</a></li>
+              </ul>
+            </div>
           </li>
           <li class="list__item"><a href="#!">Commercial</a></li>
           <li class="list__item"><a href="#!">Our Process</a></li>
@@ -28,11 +36,12 @@ const isActive = ref(false)
           <li class="list__item"><a href="#!">Areas we serve</a></li>
           <li class="list__item"><a href="#!">About us</a></li>
         </ul>
+        <a href="#!" class="estimate button">Get a free estimate</a>
       </nav>
       <div class="header__actions">
         <a href="tel:8900" class="phone">(800) 809-7197</a>
         <a href="#!" class="estimate button">Get a free estimate</a>
-        <button class="menu-btn" :class="{ 'menu-btn--active': isActive }" @click="isActive = !isActive" ref="menuBtn"></button>
+        <button class="menu-btn" :class="{ 'menu-btn--active': isActive }" @click="isActive = !isActive"></button>
       </div>
     </div>
   </header>
@@ -58,6 +67,7 @@ const isActive = ref(false)
     border-radius: 0;
   }
 }
+
 .container {
   display: flex;
   justify-content: space-between;
@@ -66,16 +76,19 @@ const isActive = ref(false)
 }
 
 .nav {
-  display: block;
+  --nav-bg: var(--theme-color-header-bg);
   position: fixed;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - var(--header-height));
   width: 100%;
   top: var(--header-height);
   left: 0;
   padding: 16px;
-  background-color: var(--theme-color-header-bg);
+  background-color: var(--nav-bg);
   transform: translateX(-100%);
-  transition: all 0.3s ease-in-out;
+  transition: var(--transition);
 
   .list {
     display: flex;
@@ -84,23 +97,62 @@ const isActive = ref(false)
     height: 100%;
 
     .submenu {
-      display: none;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      padding: 16px;
+      top: 0;
+      left: 0;
+      background: var(--nav-bg);
+      z-index: 10;
+      transform: translateX(-100%);
+      transition: var(--transition);
+
+      .h5 {
+        font-weight: 600;
+      }
+
+      &--active {
+        transform: translateX(0);
+      }
+
+      &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
     }
 
     .list__item {
       position: relative;
+      display: flex;
+      align-items: center;
 
       a {
         display: flex;
         align-items: center;
-        column-gap: 8px;
         height: 100%;
+      }
+
+      .touch-area {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 9;
       }
     }
   }
 
   &--active {
     transform: translateX(0);
+  }
+
+  .estimate {
+    display: block;
+    z-index: 11;
   }
 }
 
@@ -164,14 +216,21 @@ const isActive = ref(false)
     position: static;
     transform: translateX(0);
     padding: 0;
+    height: 100%;
 
     .list {
       flex-direction: row;
       justify-content: space-between;
 
-      &:hover {
-        .submenu {
-          display: flex;
+      &__item {
+        &:hover {
+          .submenu {
+            display: flex;
+          }
+        }
+
+        .touch-area {
+          display: none;
         }
       }
 
@@ -180,12 +239,24 @@ const isActive = ref(false)
         display: none;
         flex-direction: column;
         position: absolute;
-        row-gap: 16px;
+        height: auto;
+        width: auto;
+        top: var(--header-height);
         padding: var(--padding);
         left: calc(var(--padding) * -1);
         background-color: var(--theme-color-button-hover);
         border-radius: 0 0 24px 24px;
+        transform: none;
+        transition: none;
+
+        .back {
+          display: none;
+        }
       }
+    }
+
+    .estimate {
+      display: none;
     }
   }
 
