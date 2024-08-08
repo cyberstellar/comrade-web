@@ -124,7 +124,9 @@
 
 .sponsor {
   height: 60px;
-  width: 236px;
+  width: 100%;
+  max-width: 236px;
+  object-fit: contain;
 }
 
 .certificates {
