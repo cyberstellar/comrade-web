@@ -1,5 +1,22 @@
-<script setup>
+<script>
+import { Autoplay, A11y } from 'swiper/modules'
 
+import { Swiper, SwiperSlide } from 'swiper/vue'
+
+import 'swiper/css'
+import 'swiper/css/autoplay'
+
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    return {
+      modules: [Autoplay, A11y],
+    }
+  },
+}
 </script>
 
 <template>
@@ -13,31 +30,59 @@
           <a href="#!" class="button button--outline-white">Browse The Gallery</a>
         </div>
       </div>
-      <div class="image-gallery">
-        <div class="image-gallery__slides">
-          <div class="slide img--cover">
-            <span class="label">Before</span>
-            <img src="@/assets/images/before.webp" alt="">
+      <div>
+        <swiper
+            :modules="modules"
+            :slides-per-view="1"
+            :slides-per-group="1"
+            :space-between="16"
+            :loop="true"
+            :breakpoints="{
+                '720': {
+                  spaceBetween: 24,
+                  slidesPerView: 2,
+                  slidesPerGroup: 2
+                }
+              }"
+        >
+          <swiper-slide>
+            <div class="slide img--cover">
+              <span class="label">Before</span>
+              <img src="@/assets/images/before.webp" alt="">
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div class="slide img--cover">
+              <span class="label">After</span>
+              <img src="@/assets/images/after.webp" alt="">
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div class="slide img--cover">
+              <span class="label">Before</span>
+              <img src="@/assets/images/before.webp" alt="">
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div class="slide img--cover">
+              <span class="label">After</span>
+              <img src="@/assets/images/after.webp" alt="">
+            </div>
+          </swiper-slide>
+        </swiper>
+      </div>
+      <div>
+        <div class="gallery__footer">
+          <a href="#!">View The Project</a>
+          <div class="gallery__controls">
+            <button class="button--outline-white"></button>
+            <button class="button--outline-white"></button>
           </div>
-          <div class="slide img--cover">
-            <span class="label">After</span>
-            <img src="@/assets/images/after.webp" alt="">
-          </div>
-        </div>
-        <div class="image-gallery__nav">
-
         </div>
       </div>
-      <div class="gallery__footer">
-        <a href="#!">View The Project</a>
-        <div class="gallery__controls">
-          <button class="button--outline-white"></button>
-          <button class="button--outline-white"></button>
-        </div>
+      <div class="bg-img img--cover">
+        <img src="@/assets/images/logo-bg.svg" alt="Gallery">
       </div>
-    </div>
-    <div class="bg-img img--cover">
-      <img src="@/assets/images/logo-bg.svg" alt="Gallery">
     </div>
   </section>
 </template>
@@ -122,29 +167,19 @@
   max-width: 744px;
 }
 
-.image-gallery {
+.slide {
+  position: relative;
   overflow: hidden;
-}
+  border-radius: 24px;
 
-.image-gallery__slides {
-  display: flex;
-  flex-direction: column;
-  grid-gap: 8px;
-
-  .slide {
-    position: relative;
-    overflow: hidden;
-    border-radius: 24px;
-
-    .label {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      padding: 8px 24px;
-      background: var(--theme-color-text-white);
-      color: var(--theme-color-brand-black);
-      border-radius: 100px;
-    }
+  .label {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 8px 24px;
+    background: var(--theme-color-text-white);
+    color: var(--theme-color-brand-black);
+    border-radius: 100px;
   }
 }
 
@@ -167,10 +202,6 @@
   }
 
   .gallery__header {
-    flex-direction: row;
-  }
-
-  .image-gallery__slides {
     flex-direction: row;
   }
 

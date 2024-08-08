@@ -1,6 +1,24 @@
-<script setup>
-
+<script>
 import StarIcon from '@/assets/icons/StarIcon.vue'
+import { Autoplay, A11y } from 'swiper/modules'
+
+import { Swiper, SwiperSlide } from 'swiper/vue'
+
+import 'swiper/css'
+import 'swiper/css/autoplay'
+
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+    StarIcon
+  },
+  setup() {
+    return {
+      modules: [Autoplay, A11y],
+    }
+  },
+}
 </script>
 
 <template>
@@ -8,49 +26,76 @@ import StarIcon from '@/assets/icons/StarIcon.vue'
     <div class="container">
       <div class="testimonials__header">
         <h2>Testimonials</h2>
-        <p>Read what our satisfied clients say about their experience with Kitchen Cabinet Guys and the quality of our work.</p>
+        <p>Read what our satisfied clients say about their experience with Kitchen Cabinet Guys and the quality of our
+          work.</p>
       </div>
-      <ul class="list">
-        <li class="list-item">
-          <div class="rating">
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
+      <swiper
+          :modules="modules"
+          :slides-per-group="1"
+          :space-between="16"
+          :loop="true"
+          :breakpoints="{
+                '720': {
+                  spaceBetween: 24,
+                  slidesPerView: 2,
+                },
+                '1024': {
+                  slidesPerView: 3
+                }
+              }"
+      >
+        <swiper-slide>
+          <div class="list-item">
+            <div class="rating">
+              <StarIcon />
+              <StarIcon />
+              <StarIcon />
+              <StarIcon />
+              <StarIcon />
+            </div>
+            <p class="txt-m">
+              THE Kitchen Cabinet Guys ARE GREAT! HIGHLY RECOMMENDED! I found them on the Web (Google Search) and filled
+              out a "Contact" form on a Sat. I couldn't believe that Andrei called me on Sunday morn. - I told my wife
+              "I already like these guys!".
+            </p>
+            <p class="txt-s author">Christopher Torre</p>
           </div>
-          <p class="txt-m">
-            THE Kitchen Cabinet Guys ARE GREAT! HIGHLY RECOMMENDED! I found them on the Web (Google Search) and filled out a "Contact" form on a Sat. I couldn't believe that Andrei called me on Sunday morn. - I told my wife "I already like these guys!".
-          </p>
-          <p class="txt-s author">Christopher Torre</p>
-        </li>
-        <li class="list-item">
-          <div class="rating">
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
+        </swiper-slide>
+        <swiper-slide>
+          <div class="list-item">
+            <div class="rating">
+              <StarIcon />
+              <StarIcon />
+              <StarIcon />
+              <StarIcon />
+              <StarIcon />
+            </div>
+            <p class="txt-m">
+              Andre and the team @ Kitchen Cabinet Guys LLC did a stunning transformation of my family’s kitchen. Our
+              realtor said we easily increased the value of our home by $30k for less than a third of the cost. If
+              anyone is considering a new kitchen,
+            </p>
+            <p class="txt-s author">Michael Jason</p>
           </div>
-          <p class="txt-m">
-            Andre and the team @ Kitchen Cabinet Guys LLC did a stunning transformation of my family’s kitchen. Our realtor said we easily increased the value of our home by $30k for less than a third of the cost. If anyone is considering a new kitchen,
-          </p>
-          <p class="txt-s author">Michael Jason</p>
-        </li>
-        <li class="list-item">
-          <div class="rating">
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
+        </swiper-slide>
+        <swiper-slide>
+          <div class="list-item">
+            <div class="rating">
+              <StarIcon />
+              <StarIcon />
+              <StarIcon />
+              <StarIcon />
+              <StarIcon />
+            </div>
+            <p class="txt-m">
+              THE Kitchen Cabinet Guys ARE GREAT! HIGHLY RECOMMENDED! I found them on the Web (Google Search) and filled
+              out a "Contact" form on a Sat. I couldn't believe that Andrei called me on Sunday morn. - I told my wife
+              "I already like these guys!".
+            </p>
+            <p class="txt-s author">Christopher Torre</p>
           </div>
-          <p class="txt-m">
-            THE Kitchen Cabinet Guys ARE GREAT! HIGHLY RECOMMENDED! I found them on the Web (Google Search) and filled out a "Contact" form on a Sat. I couldn't believe that Andrei called me on Sunday morn. - I told my wife "I already like these guys!".
-          </p>
-          <p class="txt-s author">Christopher Torre</p>
-        </li>
-      </ul>
+        </swiper-slide>
+      </swiper>
     </div>
   </section>
 </template>
@@ -67,19 +112,11 @@ import StarIcon from '@/assets/icons/StarIcon.vue'
   margin-bottom: 40px;
 }
 
-.list {
-  display: flex;
-  column-gap: 24px;
-  overflow-x: auto;
-}
-
 .list-item {
   color: #5E5E5E;
   background: #FAFAFA;
   padding: 24px;
   border-radius: 16px;
-  width: 100%;
-  min-width: calc(100vw - 32px);
 
   .rating {
     display: flex;
